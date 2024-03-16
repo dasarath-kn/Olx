@@ -4,6 +4,7 @@ import './App.css'
 import Home from './Pages/Home.jsx'
 import Signup from './Pages/Signup.jsx'
 import Login from './Pages/Login.jsx'
+import Create from './Pages/Create.jsx'
 import {AuthContext,FirebaseContext} from './store/FirebaseContext.jsx'
 import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from './firebase/config.jsx'
@@ -22,7 +23,10 @@ useEffect(()=>{
            <Route path='/' element={<Home />} />
            <Route path='/signup' element={< Signup/>} />
            <Route path='/login' element={< Login/>} />
-          
+           <Route path='/create' element={< Create/>} />
+           
+           
+           
         </Routes>
       </Router>
    
