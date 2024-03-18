@@ -1,10 +1,12 @@
 import React, { Fragment, useContext, useState } from 'react';
 import './Create.css';
 import Header from '../Header/Header';
-import {AuthContext,FirebaseContext} from '../../store/FirebaseContext'
+import {AuthContext} from '../../store/FirebaseContext'
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import {firestore, storage} from '../../firebase/config'
 import { useNavigate } from 'react-router-dom';
+import { addDoc, collection } from 'firebase/firestore';
+
 
 const Create = () => {
   let [name,setName]=useState('')
@@ -16,9 +18,8 @@ const Create = () => {
   const navigate =useNavigate()
   // const {firebase}=useContext(FirebaseContext)
   
-  const handleUpload =(e)=>{
+  const handleUpload =()=>{
     
-    e.preventDefault()
 
     if(!image){
       setErr('image required')
@@ -46,7 +47,7 @@ const Create = () => {
         const productCollection = collection(firestore,'products')
         addDoc(productCollection,{
           name,
-          category,
+          category, 
           price,
           url,
           userId :user.uid,
